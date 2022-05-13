@@ -15,6 +15,7 @@ parser.add_argument("--gpu_id", default=0, type=int,help="choose your device")
 parser.add_argument("--model", default='./export/deep3d_v1.0.pt', type=str,help="input model path")
 parser.add_argument("--video", default='./medias/wood.mp4', type=str,help="input video path")
 parser.add_argument("--out", default='./results/wood.mp4', type=str,help="output video path")
+parser.add_argument('--inv', action='store_true', help='some video need to reverse left and right views')
 parser.add_argument("--tmpdir", default='./tmp', type=str,help="output video path")
 opt = parser.parse_args()
 
@@ -113,7 +114,10 @@ for frame in tqdm(range(video_length)):
         left[:,out_height-tip_h:out_height,:] = left[:,out_height-tip_h:out_height,:]*(1-tip) + tip_background*tip
         right[:,out_height-tip_h:out_height,:] = right[:,out_height-tip_h:out_height,:]*(1-tip) + tip_background*tip
 
-    pred = torch.cat((left,right),dim=2)
+    if opt.inv:
+        pred = torch.cat((right,left),dim=2)
+    else:
+        pred = torch.cat((left,right),dim=2)
     pred = transform.tensor2im(pred)
     impro.imwrite(os.path.join(opt.tmpdir, 'cvt','%06d'%(frame+1)+'.png'),pred,True)
 

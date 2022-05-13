@@ -1,5 +1,5 @@
 # Deep3D
-Real-Time end-to-end 2D-to-3D Video Conversion, based on deep learning.<br> Inspired by [piiswrong/deep3d](https://github.com/piiswrong/deep3d), we rebuild the network on pytorch and optimize it in time domain and faster inference speed. So, try it and enjoy your own 3D movie.
+Real-Time end-to-end 2D-to-3D Video Conversion, based on deep learning.<br> Inspired by [piiswrong/deep3d](https://github.com/piiswrong/deep3d), we rebuild the network on pytorch and optimize it in time domain and faster inference speed. So, try it and enjoy your own 3D movies.
 
 <div align="center">
   <img src="./medias/wood_result_360p.gif"><br>
@@ -8,8 +8,8 @@ Real-Time end-to-end 2D-to-3D Video Conversion, based on deep learning.<br> Insp
 Left is input video and right is output video with [parallax](https://en.wikipedia.org/wiki/Parallax).<br>
 
 More examples:
-- [wood-1080p]()
-- [Journey to the West (86)]()
+- [wood-1080p](https://www.bilibili.com/video/bv1bt4y1x7N3)
+- [Journey to the West (86)](https://www.bilibili.com/video/bv1xT4y1B7QK)
 
 ## Inference speed
 
@@ -49,7 +49,8 @@ Note:
 
 ### Run it!
 ```bash
-python inference.py --model ./export/deep3d_v1.0_640x360_cuda.pt --video ./medias/wood.mp4 --out ./result/wood.mp4
+python inference.py --model ./export/deep3d_v1.0_640x360_cuda.pt --video ./medias/wood.mp4 --out ./result/wood.mp4 --inv
+# some video need to reverse left and right views (--inv)
 ```
 
 
